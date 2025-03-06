@@ -1,0 +1,596 @@
+/* تنظیمات پایه */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --text-color: #2d3436;
+    --border-color: #dfe6e9;
+    --background-color: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazir', Tahoma, Arial;
+}
+
+body {
+    background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    direction: rtl;
+}
+
+/* کانتینر اصلی */
+.smart-checkout {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+/* هدر و نوار پیشرفت */
+.checkout-header {
+    background: var(--background-color);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.progress-container {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress {
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 0.5s ease;
+    border-radius: 3px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.step.active i {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: scale(1.2);
+}
+
+.step span {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* فرم اصلی */
+#checkout-form {
+    padding: 30px;
+}
+
+.form-step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* گروه‌های فرم */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67,97,238,0.1);
+    outline: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* روش‌های ارسال */
+.shipping-options {
+    display: grid;
+    gap: 15px;
+}
+
+.shipping-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.shipping-option input {
+    display: none;
+}
+
+.option-content {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.shipping-option input:checked + .option-content {
+    border-color: var(--primary-color);
+    background: rgba(67,97,238,0.05);
+}
+
+.option-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+/* جزئیات کارت */
+.card-number-group {
+    display: flex;
+    gap: 10px;
+}
+
+.card-segment {
+    flex: 1;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* دکمه‌ها */
+.form-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* پیام موفقیت */
+.success-message {
+    text-align: center;
+    padding: 40px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--success-color);
+    border-radius: 50%;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+/* خلاصه پرداخت */
+.payment-summary {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-item.total {
+    border-top: 2px solid var(--border-color);
+    margin-top: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+/* واکنش‌گرایی */
+@media (max-width: 768px) {
+    .smart-checkout {
+        margin: 10px;
+    }
+
+    .step span {
+        display: none;
+    }
+
+    .card-number-group {
+        flex-wrap: wrap;
+    }
+
+    .card-segment {
+        flex: 1 1 40%;
+    }
+
+    .form-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* انیمیشن‌های پایه */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* انیمیشن‌های پیشرفته */
+.form-step {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.form-group {
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+/* تاخیر برای گروه‌های فرم */
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+/* انیمیشن برای ورودی‌ها */
+.input-group input:focus {
+    animation: pulse 0.3s ease-in-out;
+}
+
+/* انیمیشن برای دکمه‌ها */
+.btn {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* افکت موج برای دکمه‌ها */
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.2);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* انیمیشن لودینگ */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* انیمیشن برای پیام موفقیت */
+.success-message {
+    animation: scaleIn 0.5s ease-out;
+}
+
+.success-icon {
+    animation: rotate 0.8s ease-out;
+}
+
+/* انیمیشن برای نوار پیشرفت */
+.progress-fill {
+    transition: width 0.5s ease-in-out;
+}
+
+/* انیمیشن برای مراحل */
+.step {
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    transform: scale(1.1);
+}
+
+/* انیمیشن برای خطاها */
+.error-message {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* انیمیشن برای فیلدهای انتخاب شده */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* انیمیشن برای روش‌های ارسال */
+.shipping-option {
+    transition: all 0.3s ease;
+}
+
+.shipping-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* انیمیشن برای کارت بانکی */
+.card-segment {
+    transition: all 0.3s ease;
+}
+
+.card-segment:focus {
+    transform: scale(1.05);
+}
+
+/* انیمیشن‌های اضافی */
+@keyframes highlight {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+}
+
+.highlight {
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.5) 50%,
+        rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: highlight 1s ease-in-out;
+}
+
+/* انیمیشن برای تغییر مراحل */
+@keyframes slideRight {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* کلاس‌های کمکی برای انیمیشن */
+.slide-right {
+    animation: slideRight 0.5s ease-out;
+}
+
+.slide-left {
+    animation: slideLeft 0.5s ease-out;
+}
+
+/* انیمیشن برای اعتبارسنجی */
+@keyframes validPulse {
+    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+.valid-input {
+    animation: validPulse 1.5s infinite;
+}
+
+/* انیمیشن برای لودینگ دکمه */
+@keyframes buttonLoading {
+    0% { transform: translateX(-100%); }
+    50%, 100% { transform: translateX(100%); }
+}
+
+.btn-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    animation: buttonLoading 1.5s infinite;
+}
